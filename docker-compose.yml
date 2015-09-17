@@ -1,0 +1,28 @@
+master:
+  build: .
+  ports:
+    - "2424:2424"
+    - "2480:2480"
+  links:
+    - slave1
+  environment:
+    ORIENTDB_ROOT_PASSWORD: root
+    ORIENTDB_NODE_NAME: master
+
+slave1:
+  build: .
+  environment:
+    ORIENTDB_ROOT_PASSWORD: slave1
+    ORIENTDB_NODE_NAME: slave1
+  expose:
+    - "2424"
+    - "2480"
+
+slave2:
+  build: .
+  environment:
+    ORIENTDB_ROOT_PASSWORD: slave2
+    ORIENTDB_NODE_NAME: slave2
+  expose:
+    - "2424"
+    - "2480"
